@@ -48,7 +48,7 @@ class MainPage extends StatefulWidget {
 
 class _MainPageState extends State<MainPage> {
   late List<Product> products = [];
-  List<Product> cartItems = []; // ตัวแปรเพื่อเก็บรายการสินค้าในรถเข็น
+  List<Product> cartItems = []; 
   bool isLoading = true;
 
   @override
@@ -72,7 +72,7 @@ class _MainPageState extends State<MainPage> {
 
   void addToCart(Product product) {
     setState(() {
-      cartItems.add(product); // เพิ่มสินค้าเข้าในรายการรถเข็นและอัปเดต UI ทันที
+      cartItems.add(product); 
     });
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('${product.title} added to cart')),
@@ -94,7 +94,7 @@ class _MainPageState extends State<MainPage> {
               getData();
             },
           ),
-          CartIconWithBadge(cartItemCount: cartItems.length, cartItems: cartItems), // แสดงจำนวนสินค้าในตะกร้า
+          CartIconWithBadge(cartItemCount: cartItems.length, cartItems: cartItems), 
         ],
       ),
       body: isLoading
@@ -119,8 +119,8 @@ class _MainPageState extends State<MainPage> {
                             builder: (context) => ProductDetailPage(
                               product: products[index],
                               addToCart: (Product product) {
-                                addToCart(product); // ส่งฟังก์ชัน addToCart ไปยังหน้า ProductDetailPage
-                                setState(() {}); // อัปเดต UI ของ MainPage เพื่อรีเฟรชจำนวนสินค้าในตะกร้า
+                                addToCart(product); 
+                                setState(() {}); 
                               },
                               cartItems: cartItems, 
                             ),
@@ -196,9 +196,8 @@ class ProductDetailPage extends StatefulWidget {
 class _ProductDetailPageState extends State<ProductDetailPage> {
 
   void _handleAddToCart() {
-    widget.addToCart(widget.product); // เพิ่มสินค้าลงในตะกร้า
+    widget.addToCart(widget.product); 
     setState(() {
-      // รีเฟรช UI เพื่ออัปเดตจำนวนสินค้าในตะกร้าบนไอคอน Cart
     });
   }
 
@@ -265,7 +264,7 @@ class _ProductDetailPageState extends State<ProductDetailPage> {
               const SizedBox(height: 20),
               Center(
                 child: ElevatedButton.icon(
-                  onPressed: _handleAddToCart, // เรียกใช้ฟังก์ชันที่เรียกใช้ setState เพื่อรีเฟรช UI
+                  onPressed: _handleAddToCart, 
                   icon: const Icon(Icons.add_shopping_cart),
                   label: const Text("Add to Cart"),
                   style: ElevatedButton.styleFrom(
@@ -296,7 +295,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   void _removeItem(int index) {
     setState(() {
-      widget.cartItems.removeAt(index); // ลบสินค้าตาม index ออกจากตะกร้า
+      widget.cartItems.removeAt(index); 
     });
   }
 
@@ -323,7 +322,7 @@ class _CartPageState extends State<CartPage> {
                   trailing: IconButton(
                     icon: const Icon(Icons.remove_circle, color: Colors.red),
                     onPressed: () {
-                      _removeItem(index); // เรียกฟังก์ชันเพื่อลบสินค้า
+                      _removeItem(index); 
                     },
                   ),
                 );
